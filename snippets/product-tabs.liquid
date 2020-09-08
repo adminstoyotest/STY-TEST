@@ -1,0 +1,434 @@
+{%- assign first_page = pages[section.settings.tab_page_1_handle] -%}
+{%- assign second_page = pages[section.settings.tab_page_2_handle] -%}
+{%- assign first_custom_page = '' -%}
+{%- assign second_custom_page = '' -%}
+{%- assign third_custom_page = '' -%}
+
+{%- comment -%}
+  We allow to add two tabs that are extracted using the tag system. To add such a tag, simply create a page and
+  note the handle somewhere.
+  Next, add a tag to your product in this form: __tab1:page-handle or __tab2:page-handle
+  The theme will automatically link the tab to the page
+{%- endcomment -%}
+
+{%- assign has_unique_tab_1 = false -%}
+{%- assign has_unique_tab_2 = false -%}
+
+{%- comment -%}First, check the metafields{%- endcomment -%}
+
+{%- if product.metafields.sf_product_tabs.tab_1_title != blank and product.metafields.sf_product_tabs.tab_1_content != blank -%}
+  {%- assign unique_tab_1_title = product.metafields.sf_product_tabs.tab_1_title -%}
+  {%- assign unique_tab_1_content = product.metafields.sf_product_tabs.tab_1_content -%}
+  {%- assign has_unique_tab_1 = true -%}
+{%- endif -%}
+
+{%- if product.metafields.sf_product_tabs.tab_2_title != blank and product.metafields.sf_product_tabs.tab_2_content != blank -%}
+  {%- assign unique_tab_2_title = product.metafields.sf_product_tabs.tab_2_title -%}
+  {%- assign unique_tab_2_content = product.metafields.sf_product_tabs.tab_2_content -%}
+  {%- assign has_unique_tab_2 = true -%}
+{%- endif -%}
+
+  {%- assign unique_tab_3_title = "size guide" -%}
+{% assign unique_tab_3_content = shop.metafields.sf_size_guide.size_guide %}
+{%- assign has_unique_tab_3 = true -%}
+
+  {%- assign unique_tab_4_title = "shipping & returns" -%}
+{% assign unique_tab_4_content = shop.metafields.aava_shop.shipping_and_returns %}
+{%- assign has_unique_tab_4 = true -%}
+
+
+{%- comment -%}Then, let's try the tags{%- endcomment -%}
+
+{%- for tag in product.tags -%}
+  {%- if tag contains '__tab1' -%}
+    {%- assign first_custom_page = tag | split: ':' | last -%}
+    {%- assign first_custom_page = pages[first_custom_page] -%}
+
+    {%- assign unique_tab_1_title = first_custom_page.title -%}
+    {%- assign unique_tab_1_content = first_custom_page.content -%}
+    {%- assign has_unique_tab_1 = true -%}
+  {%- endif -%}
+
+  {%- if tag contains '__tab2' -%}
+    {%- assign second_custom_page = tag | split: ':' | last -%}
+    {%- assign second_custom_page = pages[second_custom_page] -%}
+
+    {%- assign unique_tab_2_title = second_custom_page.title -%}
+    {%- assign unique_tab_2_content = second_custom_page.content -%}
+    {%- assign has_unique_tab_2 = true -%}
+  {%- endif -%}
+
+  {%- if tag contains '__tab3' -%}
+    {%- assign third_custom_page = tag | split: ':' | last -%}
+    {%- assign third_custom_page = pages[third_custom_page] -%}
+
+    {%- assign unique_tab_3_title = third_custom_page.title -%}
+    {%- assign unique_tab_3_content = third_custom_page.content -%}
+    {%- assign has_unique_tab_3 = true -%}
+  {%- endif -%}
+
+
+  {%- if tag contains '__tab4' -%}
+    {%- assign third_custom_page = tag | split: ':' | last -%}
+    {%- assign third_custom_page = pages[third_custom_page] -%}
+
+    {%- assign unique_tab_4_title = third_custom_page.title -%}
+    {%- assign unique_tab_4_content = third_custom_page.content -%}
+    {%- assign has_unique_tab_4 = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+
+{%- if first_page.handle != blank or second_page.handle != blank or has_unique_tab_1 or has_unique_tab_2 or has_unique_tab_3 or section.settings.reviews_enabled -%}
+  <div class="Product__Tabs">
+    {%- if has_unique_tab_1 -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- unique_tab_1_title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+              {{- unique_tab_1_content -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if has_unique_tab_2 -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- unique_tab_2_title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+<div class="tab tab-container">
+<div id="tabs-fit-size-1">
+  <button class="tablinks" onclick="openCity(event, 'general-table')" id="defaultOpen"><b>GENERAL</b></button>
+  </div>
+  <div id="tabs-fit-size-1">
+  <button class="tablinks" onclick="openCity(event, 'inches-table')"><b>INCHES(IN)</b></button>
+  </div>
+  <div id="tabs-fit-size-1">
+    <button class="tablinks" onclick="openCity(event, 'cm-table')"><b>CENTIMETERS(cm)</b></button>
+  </div>
+</div>
+<div id="general-table" class="tabcontent size-guide-table">    
+<table class="Table Table--noBorder page-table">
+  <tbody>
+<tr>
+<td></td>
+  <td><b>&nbsp;US/CA</b></td>
+<td><b>&nbsp;UK/NZ/AU</b></td>
+<td><b>EU&nbsp;</b></td>
+<td><b>Japan&nbsp;</b></td>
+</tr>
+<tr>
+<td>XS&nbsp;</td>
+<td>2&nbsp;</td>
+<td>6&nbsp;</td>
+<td>32&nbsp;</td>
+<td>7&nbsp;</td>
+</tr>
+<tr>
+<td>S&nbsp;</td>
+<td>4&nbsp;</td>
+<td>8&nbsp;</td>
+<td>34&nbsp;</td>
+<td>9&nbsp;</td>
+</tr>
+<tr>
+<td>M&nbsp;</td>
+<td>6&nbsp;</td>
+<td>10&nbsp;</td>
+<td>36&nbsp;</td>
+<td>11&nbsp;</td>
+</tr>
+<tr>
+<td>L</td>
+<td>8&nbsp;</td>
+<td>12&nbsp;</td>
+<td>38&nbsp;</td>
+<td>13&nbsp;</td>
+</tr>
+<tr>
+<td >XL</td>
+<td>10&nbsp;</td>
+<td>14&nbsp;</td>
+<td>40&nbsp;</td>
+<td>15&nbsp;</td>
+</tr>
+<tr>
+<td>2XL</td>
+<td>12&nbsp;</td>
+<td>16&nbsp;</td>
+<td>42&nbsp;</td>
+<td>17&nbsp;</td>
+</tr>
+<tr>
+<td>3XL</td>
+<td>14&nbsp;</td>
+<td>18&nbsp;</td>
+<td>44&nbsp;</td>
+<td>19&nbsp;</td>
+</tr>
+</tbody>
+</table>
+    </div>
+<div id="inches-table" class="tabcontent size-guide-table">    
+<table class="Table Table--noBorder page-table">
+   <tbody>
+       <tr>
+           <td></td>
+           <td><b>BUST(IN)</b></td>
+           <td><b>UNDERBUST(IN)</b></td>
+           <td><b>WAIST(IN)</b></td>
+           <td><b>HIP(IN)</b></td>
+         <td><b>TORSO(IN)</b></td>
+       </tr>
+       <tr>
+           <td>XS</td>
+           <td>31-32</td>
+           <td>26-28</td>
+           <td>23-25</td>
+           <td>33-35</td>
+           <td>25-26</td>
+       </tr>
+       <tr>
+           <td >S</td>
+           <td>33-35</td>
+           <td>28-30</td>
+           <td>25-27</td>
+           <td>35-37</td>
+           <td>27</td>
+       </tr>
+       <tr>
+           <td>M</td>
+           <td>35-37</td>
+           <td>30-32</td>
+           <td>27-29</td>
+           <td>37-39</td>
+           <td>27</td>
+       </tr>
+       <tr>
+           <td>L</td>
+           <td>37-39</td>
+           <td>32-34</td>
+           <td>29-30</td>
+           <td>39-41</td>
+           <td>27-28</td>
+       </tr>
+       <tr>
+          <td>XL</td>
+          <td>39-41</td>
+          <td>34-36</td>
+          <td>30-32</td>
+          <td>41-43</td>
+           <td>28-29</td>
+       </tr>
+       <tr>
+          <td>2XL</td>
+          <td>41-43</td>
+          <td>36-38</td>
+          <td>32-34</td>
+          <td>43-45</td>
+           <td>29-30</td>
+       </tr>
+       <tr>
+           <td>3XL</td>
+           <td>43-45</td>
+           <td>38-40</td>
+           <td>34-36</td>
+           <td>45-47</td>
+           <td>29-30</td>
+       </tr>
+    
+   </tbody>
+</table>
+    </div>
+<div id="cm-table" class="tabcontent size-guide-table">
+<table class="Table Table--noBorder page-table">
+    <tbody>
+       <tr>
+           <td></td>
+           <td><b>BUST(cm)</b></td>
+           <td><b>UNDERBUST(cm)</b></td>
+           <td><b>WAIST(cm)</b></td>
+           <td><b>HIP(cm)</b></td>
+           <td><b>TORSO(cm)</b></td>
+       </tr>
+       <tr>
+           <td>XS</td>
+           <td>79-34</td>
+           <td>67-72</td>
+           <td>58-63</td>
+           <td>85-90</td>
+           <td>65</td>
+       </tr>
+       <tr>
+           <td >S</td>
+           <td>84-89</td>
+           <td>72-77</td>
+           <td>63-68</td>
+           <td>90-95</td>
+           <td>69</td>
+       </tr>
+       <tr>
+           <td>M</td>
+           <td>89-94</td>
+           <td>77-82</td>
+           <td>68-73</td>
+           <td>95-100</td>
+           <td>69</td>
+       </tr>
+       <tr>
+           <td>L</td>
+           <td>94-99</td>
+           <td>82-87</td>
+           <td>73-78</td>
+           <td>100-105</td>
+           <td>70</td>
+       </tr>
+       <tr>
+          <td>XL</td>
+          <td>99-104</td>
+          <td>87-92</td>
+          <td>78-83</td>
+          <td>105-110</td>
+           <td>72</td>
+       </tr>
+       <tr>
+          <td>2XL</td>
+          <td>104-109</td>
+          <td>92-97</td>
+          <td>83-88</td>
+          <td>110-115</td>
+           <td>75</td>
+       </tr>
+       <tr>
+           <td>3XL</td>
+           <td>109-114</td>
+           <td>97-102</td>
+           <td>88-93</td>
+           <td>115-120</td>
+           <td>75</td>
+       </tr>
+    
+   </tbody>
+</table>
+    </div>
+</div>
+  </div>
+  <script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+            </div>
+          </div>
+        
+
+    {%- endif -%}
+
+    {%- if has_unique_tab_3 -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- unique_tab_3_title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+              {{- unique_tab_3_content -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+    
+        {%- if has_unique_tab_4 -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- unique_tab_4_title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+              {{- unique_tab_4_content -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if first_page != empty -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- first_page.title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+              {{- first_page.content -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if second_page != empty -%}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          {{- second_page.title -}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+              {{- second_page.content -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.reviews_enabled -%}
+      <div class="Collapsible Collapsible--large">
+        {%- comment -%}We parse from metafields the number of reviews. First we try to use the old way, and then the updated way{%- endcomment -%}
+        {%- if product.metafields.spr.reviews contains 'itemprop="reviewCount"' -%}
+          {%- assign reviews_count = product.metafields.spr.reviews | split: '<meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
+        {%- else -%}
+          {%- assign reviews_count = product.metafields.spr.reviews | split: '"reviewCount": "' | last | split: '"' | first | plus: 0 -%}
+        {%- endif -%}
+
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          <span>{{ 'product.tabs.reviews' | t }} <span class="text--light">({{ reviews_count | default: 0 }})</span></span>
+          <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

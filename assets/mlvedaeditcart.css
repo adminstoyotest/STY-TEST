@@ -1,0 +1,61 @@
+
+.cart__remove{
+    width:100%;
+    float:left;
+  }
+  .mlveda-main .selector-wrapper{
+  display:inline-block;
+    margin-right:10px;
+     }
+ .mlveda-main .selector-wrapper select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-position: right center;
+    background-image: url(//cdn.shopify.com/s/files/1/1343/4997/t/2/assets/ico-select.svg?17215262782595962318);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    text-indent: 0.01px;
+    text-overflow: '';
+    cursor: pointer;
+    max-width:100%!important;
+    opacity:1;
+    width: auto;
+    height:auto;
+    display: block;
+    
+}
+ .cart-item__remove{
+   float:left;
+   
+ }
+  .mlveda-main .price{
+    float:left;
+    
+  }
+  .mlvedabrand{
+font-size:12px;
+}
+  #cart-form .content{
+    position:relative;
+  }
+  a[mlveda=mlveda_format] {
+   
+        font-size: 15px;
+    
+        color: darkgray;
+  }
+@media only screen and (max-width: 749px) {
+.mlveda-div span {
+    float: none !important;
+}
+.cancel_link {
+    float: none !important;
+    display: inline-block;
+}
+.update_link {
+    float: none !important;
+    display: inline-block;
+}
+}

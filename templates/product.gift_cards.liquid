@@ -1,0 +1,12 @@
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% section 'product-template-giftcard' %}
+{% section 'related-products' %}
+{% section 'recently-viewed-products' %}
+<script>
+  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+</script>
+
+{{product.metafields.shogun.below}}
+

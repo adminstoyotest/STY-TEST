@@ -1,0 +1,11 @@
+
+<script>
+  if(typeof Shopify.OptionSelectors == "undefined"){
+  	console.log("its running");
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = "{{ 'option_selection.js' | shopify_asset_url }}";	
+    
+    document.getElementsByTagName('head')[0].appendChild(script);	
+  }
+  </script>

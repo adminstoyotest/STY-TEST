@@ -1,0 +1,18 @@
+<script>product_mysize = {{ product.metafields.mysize | json }}</script> <!-- DO NOT TOUCH - MYSIZE CODE --> 
+
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% section 'product-dispatch-template' %}
+<div class="aava__product-featured">
+ {% section 'featured-collections' %}
+</div>
+{% section 'recently-viewed-products' %}
+<script>
+  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+</script>
+
+
+
+{{product.metafields.shogun.below}}
+

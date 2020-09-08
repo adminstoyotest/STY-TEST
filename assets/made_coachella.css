@@ -1,0 +1,10 @@
+
+@font-face {
+    font-family: 'made_coachellaregular';
+    src: url('https://cdn.shopify.com/s/files/1/0271/4032/5420/files/MADE_Coachella_Regular_PERSONAL_USE.otf?579') format('otf'),
+      	 url('https://cdn.shopify.com/s/files/1/0271/4032/5420/files/made_coachella_regular_personal_use-webfont.woff2?579') format('woff2'),
+         url('https://cdn.shopify.com/s/files/1/0271/4032/5420/files/made_coachella_regular_personal_use-webfont.woff?579') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

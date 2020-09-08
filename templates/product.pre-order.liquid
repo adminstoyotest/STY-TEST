@@ -1,0 +1,10 @@
+{% section 'pre-order-item' %}
+<div class="aava__product-featured">
+ {% section 'featured-collections' %}
+</div>
+{% section 'recently-viewed-products' %}
+<script>
+  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
+  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+</script>
+

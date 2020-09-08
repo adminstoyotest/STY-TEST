@@ -1,0 +1,13 @@
+{% section 'cart-template' %}
+{% section 'recently-viewed-products' %}
+<script src="https://cdn.pagefly.io/static/assets/pf-custom-shopify-cart.min.js" defer></script>
+{% if settings.mlvedaACS_isMessageDisplay %}
+<p class="mlvedaCartNote" style="display:none">
+  {{ settings.mlvedaACS_messageContent | replace: "<<shop.name>>", shop.name | replace:"<<shop.currency>>",shop.currency|replace:"<<shop.selected_currency>>","<span class='selected-currency'></span>"}}
+</p>
+{% endif %}
+ {% assign pageurl = content_for_header| split:'"pageurl":"' | last | split:'"' | first %}
+{% assign Shopdomain = pageurl | split : "\/" | first %}
+<script id='editcartmlvedascript' mlveda='{{Shopdomain}}' src= 'https://stoyogymwear.myshopify.com/apps/EditCart/editcartmlvedaproxy.js'></script>
+{{ 'mlvedaeditcart.css' | asset_url | stylesheet_tag }}
+{% include 'mlveda-optionselection' %}
